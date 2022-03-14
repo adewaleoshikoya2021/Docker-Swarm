@@ -1,12 +1,13 @@
-version: "3.3"
+version: "3.5"
 services: 
   wordpress:
-    image: wordpress:php7.3
+    image: jenkins/jenkins:lts
     deploy:
-      replicas: 3
+      replicas: 2
       resources:
         reservations:
-          cpus: '0.5'
+          cpus: '2'
+          memory: 2048
       # placement:
       #   constraints: 
       #     - "node.labels.zone != 1"
