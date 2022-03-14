@@ -1,9 +1,9 @@
 version: "3.5"
 services: 
-  wordpress:
-    image: wordpress:php7.3
   jenkins-master:
     image: jenkins/jenkins:lts
+    volumes:
+      - jenkins-data:/var/jenkins_home
     deploy:
       replicas: 2
       resources:
@@ -16,9 +16,10 @@ services:
       #   preferences:
       #     - spread: node.labels.zone
     ports:
-      - "8082:8082"
-    # secrets:
-    #   jenkins-password:
-    #     file: jenkinspw
-    #   jenkins-username:
-    #     file: jenkinsuse
+      - "8080:8080"
+      - "5000:5000"
+    secrets:
+      jenkins-password:
+        file: "jenkinspw"
+      jenkins-username:
+        file: "jenkinsuse"
