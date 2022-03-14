@@ -14,19 +14,8 @@ docker swarm join --token SWMTKN-1-0mtu5is4x6x7ezw125e829re6m1xjdl825l29ibj7xksd
 docker info
 
 
-docker service create    \
---replicas=2 \
---publish mode=host,target=80,published=80 \
---name=wordpress \
---constraint=node.role==worker \
-wordpress:php7.3
-
-docker service create    \
---replicas=2 \
---publish mode=host,target=6379,published=6379 \
---name=jenkins \
---constraint=node.role==worker \
-redis
+$ docker run -d -p 80:80 --name jenkins \
+    --volume /path/to/tuncaytas/jenkins/
 
 docker service create    \
 --constraint=node.role==manager    \
