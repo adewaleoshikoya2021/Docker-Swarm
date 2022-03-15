@@ -16,7 +16,8 @@ docker info
 
 $ docker run -d -p 80:80 --name jenkins \
     --volume /path/to/tuncaytas/jenkins/
-    
+#update 
+docker service update --image=jenkins:3.6 jenkins    
 #rollback
 docker service rollback jenkins
 docker service ls
