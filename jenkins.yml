@@ -10,14 +10,21 @@ services:
         reservations:
           cpus: '2'
           memory: '2048M'
-      # placement:
-      #   constraints: 
-      #     - "node.labels.zone != 1"
-      #   preferences:
-      #     - spread: node.labels.zone
+    networks:
+      - jenkins-network
+      - bridge
     ports:
       - "8080:8080"
       - "5000:5000"
+    networks:
+      bridge:
+        external: true
+        name: bridge
+      jenkins-network:
+        driver: overlay
+        attachable: true
+    volumes:
+      jenkins-data:
     secrets:
       jenkins-password:
         file: "jenkinspw"
