@@ -28,7 +28,7 @@ services:
         driver: overlay
         attachable: true
     volumes:
-      jenkins-data:
+      uploads_tmp_efs:
     secrets:
       jenkins-password:
         file: "jenkinspw"
