@@ -16,6 +16,10 @@ docker info
 
 $ docker run -d -p 80:80 --name jenkins \
     --volume /path/to/tuncaytas/jenkins/
+    
+#rollback
+docker service rollback jenkins
+docker service ls
 
 docker service create    \
 --constraint=node.role==manager    \
