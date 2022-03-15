@@ -21,6 +21,25 @@ docker service update --image=jenkins:3.6 jenkins
 #rollback
 docker service rollback jenkins
 docker service ls
+#mount
+#create EFS (don't forget to open NFS port 2049 at security group)
+#Install nfs-common package:
+
+sudo apt-get install -y nfs-common
+
+#Check if your efs works:
+
+mkdir efs-test-point
+sudo chmod go+rw efs-test-point
+sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport [YOUR_EFS_DNS]:/ efs-test-point
+touch efs-test-point/1.txt
+sudo umount efs-test-point/
+ls -la efs-test-point/
+directory must be empty
+sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport [YOUR_EFS_DNS]:/ efs-test-point
+ls -la efs-test-point/
+
+file 1.txt must exists
 
 docker service create    \
 --constraint=node.role==manager    \
